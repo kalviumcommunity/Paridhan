@@ -1,1 +1,2 @@
-This is an Ecommerce web appliction named Paridhan.
+This is an Ecommerce web appliction named Paridhan
+

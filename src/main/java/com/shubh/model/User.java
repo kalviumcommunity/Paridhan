@@ -23,6 +23,9 @@ public class User {
    private String mobile;
 
 
+
+    User shubham = new User();
+
    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 
 

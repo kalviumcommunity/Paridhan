@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -30,15 +31,12 @@ public class Product {
 
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review>reviews = new ArrayList<>();
-
     private int num_rating;
-
     @ManyToOne()
     @JoinColumn(name="category_id")
     private Category category;
 
     private LocalDateTime createdAt;
-
 
     public Product(){
 

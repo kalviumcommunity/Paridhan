@@ -27,24 +27,19 @@ public class Cart {
     private  int discount;
 
     public Cart (){
-
     }
     public long getId() {
         return Id;
     }
-
     public void setId(long id) {
         Id = id;
     }
-
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
-
     public Set<CartItem> getCartItems() {
         return cartItems;
     }

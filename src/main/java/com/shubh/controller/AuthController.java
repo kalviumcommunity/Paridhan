@@ -14,10 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -59,13 +56,13 @@ public class AuthController {
 
         String token = jwtProvider.generateToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse();
-        authResponse.setJwt(token);
-        authResponse.setMessage("SignUp successfully");
+        AuthResponse authResponse = new AuthResponse(token,"signUp sucessfull");
+//        authResponse.setJwt(token);
+//        authResponse.setMessage("SignUp successfully");
 
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
     }
-    @PostMapping("/signin")
+    @PostMapping("/signIn")
     public ResponseEntity<AuthResponse>loginHandler(@RequestBody LoginRequest loginRequest){
         String username = loginRequest.getEmail();
         String password = loginRequest.getPassword();
@@ -74,7 +71,9 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse();
+        AuthResponse authResponse = new AuthResponse(token,"signIn sucessfull");
+//        authResponse.setJwt(token);
+//        authResponse.setMessage("SignIn successfully");
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
     }
 

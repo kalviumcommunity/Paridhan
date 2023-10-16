@@ -3,14 +3,19 @@ package com.shubh.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +26,8 @@ public class User {
    private String password;
    private String role;
    private String mobile;
-
+@Enumerated(EnumType.STRING)
+   private Role roles;
 
 
     User shubham = new User();
@@ -97,12 +103,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getPassword() {return password;
     }
 
     public String getRole() {

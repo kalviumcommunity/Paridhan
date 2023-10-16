@@ -1,8 +1,6 @@
 package com.shubh.service;
-
 import com.shubh.model.User;
 import com.shubh.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,18 +12,24 @@ import java.util.List;
 @Service
 public class CustomUser implements UserDetailsService {
     private UserRepository userRepository;
-    public  CustomUser(UserRepository userRepository){
-       this.userRepository=userRepository;
+
+    public CustomUser(UserRepository userRepository) {
+        this.userRepository=userRepository;
+
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
-        if(user==null){
-            throw new UsernameNotFoundException("user not found with this email-"+username);
 
+        User user = userRepository.findByEmail(username);
+
+        if(user == null) {
+            throw new UsernameNotFoundException("user not found with email "+username);
         }
-        List<GrantedAuthority>authorities=new ArrayList<>();
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),authorities);
     }
+
 }

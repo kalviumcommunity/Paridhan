@@ -14,29 +14,39 @@ public class UserServiceImplementation implements UserService{
     private UserRepository userRepository;
     private JwtProvider jwtProvider;
 
-    public UserServiceImplementation(UserRepository userRepository, JwtProvider jwtProvider) {
-        this.userRepository = userRepository;
-        this.jwtProvider = jwtProvider;
+    public UserServiceImplementation(UserRepository userRepository,JwtProvider jwtProvider) {
+
+        this.userRepository=userRepository;
+        this.jwtProvider=jwtProvider;
+
     }
 
     @Override
-    public User findUserById(long userId) throws userException {
-        Optional<User>user = userRepository.findById(userId);
+    public User findUserById(Long userId) throws userException {
+        Optional<User> user=userRepository.findById(userId);
+
         if(user.isPresent()){
             return user.get();
         }
-        throw  new userException("user not found with id:"+ userId);
+        throw new userException("user not found with id "+userId);
     }
+
 
     @Override
     public User findUserProfileByJwt(String jwt) throws userException {
+        System.out.println("user service");
+        String email=jwtProvider.getEmailFromToken(jwt);
 
-        String email = jwtProvider.getEmailFromToken(jwt);
-        User user = userRepository.findByEmail(email);
+        System.out.println("email"+email);
 
-        if(user==null){
-            throw  new userException("user not found with this "+email);
+        User user=userRepository.findByEmail(email);
+
+
+
+        if(user==null) {
+            throw new userException("user not exist with email "+email);
         }
+        System.out.println("email user"+user.getEmail());
         return user;
     }
 }

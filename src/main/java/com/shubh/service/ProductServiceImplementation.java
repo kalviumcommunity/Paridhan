@@ -5,7 +5,7 @@ import com.shubh.model.Category;
 import com.shubh.model.Product;
 import com.shubh.repository.CategoryRepository;
 import com.shubh.repository.ProductRepository;
-import com.shubh.repository.UserRepository;
+//import com.shubh.repository.UserRepository;
 import com.shubh.request.CreateProduct;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,12 +23,12 @@ import java.util.stream.Collectors;
 public class ProductServiceImplementation implements ProductService{
 
     private ProductRepository productRepository;
-    private UserRepository userRepository;
+//    private UserRepository userRepository;
     private CategoryRepository categoryRepository;
 
-    public ProductServiceImplementation(ProductRepository productRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
+    public ProductServiceImplementation(ProductRepository productRepository,  CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
-        this.userRepository = userRepository;
+//        this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
     }
 

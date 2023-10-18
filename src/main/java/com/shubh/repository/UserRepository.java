@@ -9,8 +9,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
 
     public User findByEmail(String email);
-
-
-
+    User findByOauth2Email(String oauth2Email);
 
 }

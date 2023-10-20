@@ -81,7 +81,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
+    public String getLastname(){
         return lastname;
     }
 

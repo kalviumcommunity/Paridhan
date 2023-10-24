@@ -3,9 +3,7 @@ import com.shubh.model.Product;
 import com.shubh.request.CreateProduct;
 import com.shubh.exceptions.ProductException;
 import org.springframework.data.domain.Page;
-
 import java.util.List;
-
 public interface ProductService {
     public  Product createProduct(CreateProduct req);
     public String deleteProduct(long productId) throws ProductException;

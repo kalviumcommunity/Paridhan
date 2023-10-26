@@ -1,8 +1,11 @@
 package com.shubh.ecommerce.model;
 
+import com.shubh.ecommerce.user.PaymentMethod;
+import com.shubh.ecommerce.user.PaymentStatus;
+
 public class PaymentDetails {
-    private String paymentMethod;
-    private String paymentStatus;
+    private PaymentMethod paymentMethod;
+    private PaymentStatus paymentStatus;
     private String paymentId;
     private String razorpayPaymentLinkId;
     private String razorpayPaymentLinkReferenceId;
@@ -14,7 +17,7 @@ public class PaymentDetails {
 
     }
 
-    public PaymentDetails(String paymentMethod, String paymentStatus, String paymentId, String razorpayPaymentLinkId, String razorpayPaymentLinkReferenceId, String razorpayPaymentLinkStatus, String razorpayPaymentId) {
+    public PaymentDetails(PaymentMethod paymentMethod, PaymentStatus paymentStatus, String paymentId, String razorpayPaymentLinkId, String razorpayPaymentLinkReferenceId, String razorpayPaymentLinkStatus, String razorpayPaymentId) {
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.paymentId = paymentId;
@@ -24,19 +27,19 @@ public class PaymentDetails {
         this.razorpayPaymentId = razorpayPaymentId;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getPaymentStatus() {
+    public PaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 

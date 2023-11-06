@@ -1,6 +1,6 @@
 package com.shubh.model;
 
-
+`
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -22,9 +22,7 @@ public class User {
    private String role;
    private String mobile;
 
-
-
-    User shubham = new User();
+    // User shubham = new User();
 
    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 

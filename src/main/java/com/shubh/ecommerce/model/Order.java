@@ -32,7 +32,7 @@ public class Order {
     private Address shippingAddress;
 
     @Embedded
-    private PaymentDetails paymentDetails=new PaymentDetails();
+    private PaymentDetails paymentDetails = new PaymentDetails();
 
     private double totalPrice;
 
@@ -48,6 +48,11 @@ public class Order {
 
     public Order(){
 
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+      System.out.println("order is destroyed");
     }
 
     public Order(Long id, String orderId, User user, List<OrderItem> orderItems, LocalDateTime orderDate, LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice, Integer totalDiscountedPrice, Integer discount, OrderStatus orderStatus, int totalItem, LocalDateTime createdAt) {

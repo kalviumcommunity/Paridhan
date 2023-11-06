@@ -12,12 +12,6 @@ public class EcommerceApplication {
 
     public static void main(String[] args) {
 		SpringApplication.run(EcommerceApplication.class, args);
-//        ApplicationContext context = SpringApplication.run(EcommerceApplication.class, args);
-//        if (context.containsBean("authenticationProvider")) {
-//            System.out.println("AuthenticationProvider is running.");
-//        } else {
-//            System.out.println("AuthenticationProvider is not running.");
-//        }
 
     }
 

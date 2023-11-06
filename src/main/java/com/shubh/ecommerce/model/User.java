@@ -39,13 +39,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-
-    @Column(name = "oauth2_email")
-    private String oauth2Email;
-
-    @Column(name = "oauth2_name")
-    private String oauth2Name;
-
     private UserRole role;
 
     private String mobile;
@@ -67,15 +60,13 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Review>reviews=new ArrayList<>();
 
-
-
     private LocalDateTime createdAt;
 
     public User() {
 
     }
 
-    public User(Long id, String firstName, String lastName, String password, String email,String oauth2Email,String oauth2Name, UserRole role, String mobile,
+    public User(Long id, String firstName, String lastName, String password, String email, UserRole role, String mobile,
                 List<Address> addresses, List<PaymentInformation> paymentInformation, List<Rating> ratings,
                 List<Review> reviews, LocalDateTime createdAt) {
         super();
@@ -84,8 +75,6 @@ public class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.oauth2Email=oauth2Email;
-        this.oauth2Name=oauth2Name;
         this.role = role;
         this.mobile = mobile;
         this.addresses = addresses;
@@ -93,14 +82,6 @@ public class User {
         this.ratings = ratings;
         this.reviews = reviews;
         this.createdAt = createdAt;
-    }
-
-    public String getOauth2Email() {
-        return oauth2Email;
-    }
-
-    public void setOauth2Email(String oauth2Email) {
-        this.oauth2Email = oauth2Email;
     }
 
     public List<Rating> getRatings() {
@@ -141,14 +122,6 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getOauth2Name() {
-        return oauth2Name;
-    }
-
-    public void setOauth2Name(String oauth2Name) {
-        this.oauth2Name = oauth2Name;
     }
 
     public String getLastName() {

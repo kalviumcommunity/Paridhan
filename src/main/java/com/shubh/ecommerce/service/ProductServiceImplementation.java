@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ProductServiceImplementation implements ProductService{
 
     private ProductRepository productRepository;
@@ -89,8 +91,6 @@ public class ProductServiceImplementation implements ProductService{
 
         return savedProduct;
     }
-
-
 
     @Override
     public String deleteProduct(Long productId) throws ProductException {
@@ -192,8 +192,9 @@ public class ProductServiceImplementation implements ProductService{
 
         List<Product> pageContent = products.subList(startIndex, endIndex);
         Page<Product> filteredProducts = new PageImpl<>(pageContent, pageable, products.size());
-        return filteredProducts;
+        return filteredProducts; // If color list is empty, do nothing and return all products
 
 
     }
+
 }

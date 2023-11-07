@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserServiceImplementation implements UserService{
+public class UserServiceImplementation implements UserService {
 
     private UserRepository userRepository;
-    private JwtProvider jwtTokenProvider;
+    private JwtProvider jwtProvider;
 
-    public UserServiceImplementation(UserRepository userRepository,JwtProvider jwtTokenProvider) {
+    public UserServiceImplementation(UserRepository userRepository,JwtProvider jwtProvider) {
 
         this.userRepository=userRepository;
-        this.jwtTokenProvider=jwtTokenProvider;
+        this.jwtProvider=jwtProvider;
 
     }
 
@@ -34,11 +34,11 @@ public class UserServiceImplementation implements UserService{
     @Override
     public User findUserProfileByJwt(String jwt) throws UserException {
         System.out.println("user service");
-        String email=jwtTokenProvider.getEmailFromJwtToken(jwt);
+        String email=jwtProvider.getEmailFromJwtToken(jwt);
 
         System.out.println("email"+email);
 
-        User user=userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
 
 
 

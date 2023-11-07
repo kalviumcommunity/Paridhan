@@ -1,10 +1,7 @@
 package com.shubh.ecommerce.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Product {
@@ -212,29 +209,29 @@ public class Product {
     public void setSizes(Set<Size> sizes) {
         this.sizes = sizes;
     }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(brand, category, color, description, discountPersent, discountedPrice, id, imageUrl,
-//                numRatings, price, quantity, ratings, reviews, sizes, title);
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj)
-//            return true;
-//        if (obj == null)
-//            return false;
-//        if (getClass() != obj.getClass())
-//            return false;
-//        Product other = (Product) obj;
-//        return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
-//                && Objects.equals(color, other.color) && Objects.equals(description, other.description)
-//                && discountPersent == other.discountPersent && discountedPrice == other.discountedPrice
-//                && Objects.equals(id, other.id) && Objects.equals(imageUrl, other.imageUrl)
-//                && numRatings == other.numRatings && price == other.price && quantity == other.quantity
-//                && Objects.equals(ratings, other.ratings) && Objects.equals(reviews, other.reviews)
-//                && Objects.equals(sizes, other.sizes) && Objects.equals(title, other.title);
-//    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, category, color, description, discountPersent, discountedPrice, id, imageUrl,
+                numRatings, price, quantity, ratings, reviews, sizes, title);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
+                && Objects.equals(color, other.color) && Objects.equals(description, other.description)
+                && discountPersent == other.discountPersent && discountedPrice == other.discountedPrice
+                && Objects.equals(id, other.id) && Objects.equals(imageUrl, other.imageUrl)
+                && numRatings == other.numRatings && price == other.price && quantity == other.quantity
+                && Objects.equals(ratings, other.ratings) && Objects.equals(reviews, other.reviews)
+                && Objects.equals(sizes, other.sizes) && Objects.equals(title, other.title);
+    }
 
 }

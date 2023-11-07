@@ -22,14 +22,13 @@ public class ProductController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Product> createProductHandler(@RequestBody CreateProduct req) throws ProductException {
+    public ResponseEntity<Product> createProductHandler(@RequestBody CreateProduct req) throws ProductException{
 
         Product createdProduct = productService.createProduct(req);
 
         return new ResponseEntity<Product>(createdProduct,HttpStatus.ACCEPTED);
 
     }
-
     @DeleteMapping("/{productId}/delete")
     public ResponseEntity<ApiResponse> deleteProductHandler(@PathVariable Long productId) throws ProductException{
 

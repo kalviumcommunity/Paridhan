@@ -1,8 +1,10 @@
 package com.shubh.ecommerce.controller;
 import com.shubh.ecommerce.config.JwtProvider;
 import com.shubh.ecommerce.exceptions.UserException;
+import com.shubh.ecommerce.model.Cart;
 import com.shubh.ecommerce.service.CartService;
 import com.shubh.ecommerce.service.CustomUser;
+import com.shubh.ecommerce.user.UserRole;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,6 +24,8 @@ import com.shubh.ecommerce.request.LoginRequest;
 import com.shubh.ecommerce.response.AuthResponse;
 import jakarta.validation.Valid;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -30,14 +34,14 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
     private JwtProvider jwtTokenProvider;
     private CustomUser customUserDetails;
-//    private CartService cartService;
+     private CartService cartService;
 
-    public AuthController(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtProvider jwtTokenProvider,CustomUser customUserDetails) {
+    public AuthController(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtProvider jwtTokenProvider,CustomUser customUserDetails,CartService cartService) {
         this.userRepository=userRepository;
         this.passwordEncoder=passwordEncoder;
         this.jwtTokenProvider=jwtTokenProvider;
         this.customUserDetails=customUserDetails;
-//        this.cartService=cartService;
+        this.cartService=cartService;
     }
 
     @PostMapping("/signup")
@@ -63,12 +67,13 @@ public class AuthController {
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
         createdUser.setPassword(passwordEncoder.encode(password));
-
+        createdUser.setMobile(user.getMobile());
+        createdUser.setRole(UserRole.ROLE_USER);
+        createdUser.setRole(UserRole.ROLE_ADMIN);
 
 
         User savedUser= userRepository.save(createdUser);
-
-//        cartService.createCart(savedUser);
+        Cart cart = cartService.createCart(savedUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -93,10 +98,11 @@ public class AuthController {
 
 
         String token = jwtTokenProvider.generateToken(authentication);
-        AuthResponse authResponse= new AuthResponse();
-
-        authResponse.setStatus(true);
-        authResponse.setJwt(token);
+//        AuthResponse authResponse= new AuthResponse();
+//
+//        authResponse.setStatus(true);
+//        authResponse.setJwt(token);
+        AuthResponse authResponse= new AuthResponse(token,true);
 
         return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.OK);
     }

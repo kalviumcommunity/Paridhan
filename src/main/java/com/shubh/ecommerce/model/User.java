@@ -40,7 +40,7 @@ public class User {
     private String email;
 
     private UserRole role;
-
+    @Column(name = "mobile")
     private String mobile;
 
 

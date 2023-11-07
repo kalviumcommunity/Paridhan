@@ -30,6 +30,7 @@ public class CustomUser implements UserDetailsService {
         if(user == null) {
             throw new UsernameNotFoundException("user not found with email "+username);
         }
+        System.out.println("Found user: " + user.getEmail());
 
         List<GrantedAuthority> authorities = new ArrayList<>();
 

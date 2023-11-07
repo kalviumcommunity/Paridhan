@@ -37,7 +37,6 @@ public class Product {
     private Category category;
 
     private LocalDateTime createdAt;
-
     public Product(){
     }
 

@@ -39,7 +39,6 @@ public class Product {
     private LocalDateTime createdAt;
 
     public Product(){
-
     }
 
     public Product(long id, String title, String description, int price, int discountPrice,int presentDiscount, int quantity, String brand, String colour, String image, Set<Size> sizes, List<Rating> ratings, List<Review> reviews, int num_rating, Category category, LocalDateTime createdAt) {

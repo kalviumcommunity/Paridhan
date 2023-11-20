@@ -4,6 +4,14 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
+@Table(name = "product",
+        indexes = {
+                @Index(name = "idx_category_id", columnList = "category_id"),
+                @Index(name = "idx_discounted_price", columnList = "discounted_price"),
+                @Index(name = "idx_discount_percent", columnList = "discount_percent"),
+               
+        }
+)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
